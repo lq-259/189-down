@@ -1,37 +1,77 @@
-## Welcome to GitHub Pages
+const html = `<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no"/>
+<meta name="renderer" content="webkit"/>
+<meta name="force-rendering" content="webkit"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/libsgh/189-down@main/logo.ico">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"
+  integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw"
+  crossorigin="anonymous"
+/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/libsgh/189-down@main/main.css" />
+<title>天翼云盘分享直链解析</title>
+</head>
+<body>
+<div class="mdui-container">
+<div class="mdui-row" style="margin-top: 100px">
+	<div class="mdui-typo-display-1-opacity mdui-text-center">天翼云盘分享直链解析</div>
+	<div class="mdui-typo-subheading-opacity mdui-text-center">若没有分享密码则无需填写</div>
+	<div class="mdui-typo-subheading-opacity mdui-text-center">文件夹会先展示列表</div>
+</div>
+<div class="mdui-row">
+  <div class="mdui-col-xs-9">
+  	<div class="mdui-textfield mdui-textfield-floating-label">
+	  <i class="mdui-icon material-icons">&#xe157;</i>
+	  <label class="mdui-textfield-label">天翼云分享链接</label>
+	  <input class="mdui-textfield-input" name="url" type="text"/>
+	</div>
+  </div>
+  <div class="mdui-col-xs-3">
+  	<div class="mdui-textfield mdui-textfield-floating-label">
+	  <label class="mdui-textfield-label">分享密码</label>
+	  <input class="mdui-textfield-input" name="passCode" type="text"/>
+	</div>
+  </div>
+</div>
+<div class="mdui-row">
+  <div class="mdui-col-xs-12">
+	  <button id="downBtn" class="mdui-btn mdui-btn-raised mdui-btn-block mdui-ripple mdui-color-indigo">立即下载</button>
+  </div>
+</div>
+<div class="mdui-row">
+	<ul class="mdui-list"></ul>
+</div>
+<div class="mdui-row" style="margin-top: 20px">
+  <div class="mdui-divider"></div>
+  <div class="mdui-text-center mdui-typo" style="margin-top: 10px">
+  	Powered by <a href="https://github.com/libsgh/189-down" target="_blank">189-down</a> |
+  	 Api by <a href="https://github.com/libsgh/PanIndex" target="_blank">PanIndex</a>
+  </div>
+</div>
+</div>
+<script
+  src="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/js/mdui.min.js"
+  integrity="sha384-gCMZcshYKOGRX9r6wbDrvF+TcCCswSHFucUzUPwka+Gr+uHgjlYvkABr95TCOz3A"
+  crossorigin="anonymous"
+></script>
+<script src="https://cdn.jsdelivr.net/gh/libsgh/189-down@main/main.js"></script>
+</body>
+</html>`
 
-You can use the [editor on GitHub](https://github.com/lq-259/189-down/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+async function handleRequest(request) {
+  return new Response(html, {
+    headers: {
+      "content-type": "text/html;charset=UTF-8",
+    },
+  })
+}
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/lq-259/189-down/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+addEventListener("fetch", event => {
+  return event.respondWith(handleRequest(event.request))
+})
